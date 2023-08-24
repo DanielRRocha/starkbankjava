@@ -1,12 +1,17 @@
 package starkbank.steps;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import io.cucumber.datatable.DataTable;
 import io.restassured.response.ValidatableResponse;
 import starkbank.logic.TransferLogic;
+import starkbank.models.TransfersModel;
 import starkbank.setup.API.APIHooks;
 
 public class TransferSteps {
@@ -22,6 +27,22 @@ public class TransferSteps {
 		logger.info("Using after date: " + after_date);
 		logger.info("Using before date: " + before_date);
 		response = transferLogic.get_list_transfers(urn, after_date, before_date);
+	}
+	
+	@Given("I send a post request to {string} with the following data")
+	public void i_send_a_post_request_to_with_the_following_data(String urn, DataTable dt) {
+	    List<Map<Object,Object>> list = dt.asMaps(String.class, String.class);
+	    logger.info("Sending a get request to " + APIHooks.get_url(urn));
+	    
+	    TransfersModel transfer = new TransfersModel(list.get(0).get("name").toString(), 
+	    											Integer.parseInt(list.get(0).get("amount").toString()), 
+	    											list.get(0).get("taxid").toString(), 
+	    											list.get(0).get("bankCode").toString(), 
+	    											list.get(0).get("branchCode").toString(), 
+	    											list.get(0).get("accountNumber").toString());
+	    
+    
+	    response = transferLogic.post_create_transfers(urn, transfer);
 	}
 
 	@Then("validate the status code {int} and the response contains {string}")

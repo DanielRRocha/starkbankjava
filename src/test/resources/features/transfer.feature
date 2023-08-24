@@ -9,3 +9,12 @@ Feature: Test
 	Examples:
 		| after_date	| before_date	|
 		| 2020-04-01	| 2020-04-30	|
+
+	
+	@transfer
+	@CreateTransfer
+	Scenario: Create Transfer
+		Given I send a post request to "transfer" with the following data
+			| name					| amount	| taxid				| bankCode	| branchCode	| accountNumber	|
+			| Daenerys Targaryen	| 1000000	| 123.456.789-10	| 20018183	| 2201			| 10000-0		|
+		Then validate the status code 201 and the response contains "amount"

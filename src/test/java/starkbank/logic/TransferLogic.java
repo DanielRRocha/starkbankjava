@@ -8,6 +8,7 @@ import org.junit.Assert;
 
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
+import starkbank.models.TransfersModel;
 import starkbank.setup.API.APIHooks;
 import starkbank.steps.TransferSteps;
 
@@ -27,6 +28,16 @@ public class TransferLogic {
 		
 		return resp.then(); 
 		
+	}
+	
+	public ValidatableResponse post_create_transfers(String urn, TransfersModel transfer){
+		resp = given()
+				.header("Access-Time", APIHooks.convert_from_unix_timestamp())
+				.body(transfer)
+				.when()
+				.get(APIHooks.get_url(urn));
+		
+		return resp.then();
 	}
 	
 	public void validate_list_transfer_response(ValidatableResponse response, int status_code, String text) {

@@ -1,7 +1,6 @@
 package starkbank.setup.API;
 
 import java.time.Instant;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 import org.apache.logging.log4j.LogManager;
@@ -62,37 +61,4 @@ public class APIHooks {
 	{
 		return Instant.now().getEpochSecond();
 	}
-	
-	
-//	public void starkbank_authorization() {
-//		// This is only an example of a private key content. You should use your own key.
-//		String privateKeyContent = """
-//		-----BEGIN EC PARAMETERS-----
-//		BgUrgQQACg==
-//		-----END EC PARAMETERS-----
-//		-----BEGIN EC PRIVATE KEY-----
-//		MHQCAQEEIMCwW74H6egQkTiz87WDvLNm7fK/cA+ctA2vg/bbHx3woAcGBSuBBAAK
-//		oUQDQgAE0iaeEHEgr3oTbCfh8U2L+r7zoaeOX964xaAnND5jATGpD/tHec6Oe9U1
-//		IF16ZoTVt1FzZ8WkYQ3XomRD4HS13A==
-//		-----END EC PRIVATE KEY-----
-//		""";
-//
-//		// for project users:
-//		Project user = new Project(
-//		    "sandbox",
-//		    "5656565656565656",
-//		    privateKeyContent
-//		);
-//
-////		// or, for organization users:
-////		Organization user = new Organization(
-////		    "sandbox",
-////		    "4545454545454545",
-////		    privateKeyContent
-////		);
-//
-//		Settings.user = user;
-//	}
-	
-	
 }
