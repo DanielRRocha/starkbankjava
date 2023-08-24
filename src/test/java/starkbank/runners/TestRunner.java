@@ -12,7 +12,7 @@ import io.qameta.allure.Epic;
 		features	=	{"src/test/resources/features"},
 		glue		=	{"starkbank.steps", "starkbank.setup.API"},
 		snippets	=	SnippetType.UNDERSCORE,
-		tags		=	{"@CreateTransfer"})
+		tags		=	{"@transfer"})
 @Epic("TestRunner")
 public class TestRunner {
 
